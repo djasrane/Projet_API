@@ -18,7 +18,7 @@ const schema = mongoose.Schema({
   productName: {
     type: String,
     required: true,
-  },
+  },backend ajouter un utilisateur backend ajouter un utilisateur 
   price: {
     type: Number,
     required: true,
