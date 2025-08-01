@@ -1,9 +1,18 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
+// const userRouters = require('./routes/userRouters');
+const userRouters = require('./auther/routers/userRouters');
+
+
 
 const app = express();
 const PORT = 3000;
+// Routes
+app.use(express.json());
+
+app.use('/', userRouters);
+
 
 mongoose
   .connect(process.env.MONGODB_URI)
@@ -18,7 +27,8 @@ const schema = mongoose.Schema({
   productName: {
     type: String,
     required: true,
-  },backend ajouter un utilisateur backend ajouter un utilisateur 
+  },
+  //backend ajouter un utilisateur backend ajouter un utilisateur 
   price: {
     type: Number,
     required: true,
@@ -32,7 +42,6 @@ const schema = mongoose.Schema({
 
 const productModel = mongoose.model("products", schema);
 
-app.use(express.json());
 
 app.get("/products", async (req, res) => {
   const products = await productModel.find();
